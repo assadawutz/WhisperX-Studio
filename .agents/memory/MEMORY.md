@@ -1,0 +1,1 @@
+- [Porting Next.js landing pages into Vite artifacts](porting-nextjs-to-vite.md) — checklist of Next-specific patterns that silently break or need replacing.
