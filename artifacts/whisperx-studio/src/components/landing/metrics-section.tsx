@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { motion, useInView , Variants } from "framer-motion";
 
 const metrics = [
   { 
@@ -28,31 +29,23 @@ function AnimatedNumber({ end, suffix = "", prefix = "" }: { end: number; suffix
   const [count, setCount] = useState(0);
   const [isScrambling, setIsScrambling] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          const duration = 2500;
-          const startTime = performance.now();
-          const animate = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 4);
-            setCount(Math.floor(eased * end));
-            setIsScrambling(progress < 0.8);
-            if (progress < 1) requestAnimationFrame(animate);
-          };
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [end, hasAnimated]);
+    if (isInView) {
+      const duration = 2500;
+      const startTime = performance.now();
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        setCount(Math.floor(eased * end));
+        setIsScrambling(progress < 0.8);
+        if (progress < 1) requestAnimationFrame(animate);
+      };
+      requestAnimationFrame(animate);
+    }
+  }, [end, isInView]);
 
   const displayValue = count.toLocaleString();
 
@@ -90,9 +83,10 @@ function GridBackground() {
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.scale(dpr, dpr);
     };
     resize();
     window.addEventListener("resize", resize);
@@ -135,7 +129,7 @@ function GridBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
+      className="absolute inset-0 pointer-events-none mix-blend-screen"
       style={{ width: "100%", height: "100%" }}
     />
   );
@@ -173,9 +167,10 @@ function DotGraph({
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const W = canvas.offsetWidth || 300;
     const H = height;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset
     canvas.width = W * dpr;
     canvas.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.scale(dpr, dpr);
 
     const render = () => {
       ctx.clearRect(0, 0, W, H);
@@ -192,7 +187,7 @@ function DotGraph({
 
         ctx.beginPath();
         ctx.arc(x, dotY, r, 0, Math.PI * 2);
-        ctx.fillStyle = color === "green"
+        ctx.fillStyle = color === "pink"
           ? `rgba(236, 168, 214, ${alpha})`
           : `rgba(255, 255, 255, ${alpha})`;
         ctx.fill();
@@ -216,8 +211,8 @@ function DotGraph({
 
 export function MetricsSection() {
   const [time, setTime] = useState<Date | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     setTime(new Date());
@@ -225,90 +220,90 @@ export function MetricsSection() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+  };
+  
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
 
   return (
-    <section ref={sectionRef} className="relative py-32 lg:py-40 overflow-hidden">
+    <section ref={sectionRef} className="relative py-32 lg:py-40 overflow-hidden bg-black">
       <GridBackground />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
-        {/* Header */}
-        <div className="grid lg:grid-cols-12 gap-8 mb-16 lg:mb-24">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid lg:grid-cols-12 gap-8 mb-16 lg:mb-24"
+        >
           <div className="lg:col-span-8 lg:col-start-1">
-            <div className={`flex items-center gap-4 mb-8 transition-all duration-1000 ease-out ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}>
-              <span className="flex items-center gap-2 px-3 py-1 bg-[#eca8d6]/10 text-[#eca8d6] text-xs font-mono rounded-sm border border-[#eca8d6]/20 shadow-[0_0_10px_rgba(236,168,214,0.1)]">
-                <span className="w-2 h-2 rounded-full bg-[#eca8d6] shadow-[0_0_5px_rgba(236,168,214,1)] animate-pulse" />
+            <motion.div variants={itemVariants} className="flex items-center gap-4 mb-8">
+              <span className="flex items-center gap-2 px-3 py-1 bg-[#eca8d6]/10 text-[#eca8d6] text-xs font-mono rounded-sm border border-[#eca8d6]/20 shadow-[0_0_15px_rgba(236,168,214,0.15)]">
+                <span className="w-2 h-2 rounded-full bg-[#eca8d6] shadow-[0_0_8px_rgba(236,168,214,1)] animate-pulse" />
                 LIVE
               </span>
               <span className="text-sm font-mono text-muted-foreground uppercase tracking-widest">
                 {time ? `${time.toLocaleTimeString("en-GB")} UTC` : ""}
               </span>
-            </div>
+            </motion.div>
 
-            <h2 className={`text-[clamp(3.5rem,8vw,9rem)] font-display tracking-tight leading-[0.95] transition-all duration-1000 ease-out delay-100 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}>
+            <motion.h2 variants={itemVariants} className="text-[clamp(3.5rem,8vw,9rem)] font-display tracking-tight leading-[0.95] text-white">
               Real-time
               <br />
               <span className="text-muted-foreground">agent metrics.</span>
-            </h2>
+            </motion.h2>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Organic graph image */}
-        <div className={`w-full mb-0 transition-all duration-1000 ease-out delay-300 ${
-          isVisible ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
-        }`}>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+          className="w-full mb-0 relative"
+        >
+          <div className="absolute inset-0 bg-[#eca8d6]/5 blur-[100px] rounded-full mix-blend-screen" />
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/real-time-graph-INFmn3u0MlUwvNPynoIhwxtPaPjxM5.png"
             alt="Real-time visual graph"
             aria-hidden="true"
-            className="w-full h-auto object-cover opacity-80"
+            className="w-full h-auto object-cover opacity-90 mix-blend-screen"
           />
-        </div>
+        </motion.div>
 
-        {/* Metrics grid */}
-        <div className="grid lg:grid-cols-3 gap-4 lg:gap-6 mt-6 lg:-mt-12 relative z-20">
-          {/* Large metric */}
-          <div className={`lg:col-span-1 bg-black/60 backdrop-blur-xl border border-foreground/20 p-10 lg:p-14 transition-all duration-1000 ease-out hover:bg-black/80 hover:border-foreground/40 group ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
-          }`}>
-            <div className="text-5xl md:text-6xl lg:text-7xl font-display tracking-tight mb-6 whitespace-nowrap overflow-hidden group-hover:text-[#eca8d6] transition-colors duration-500">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid lg:grid-cols-3 gap-4 lg:gap-6 mt-6 lg:-mt-12 relative z-20"
+        >
+          <motion.div variants={itemVariants} className="lg:col-span-1 bg-black/80 backdrop-blur-xl border border-foreground/20 p-10 lg:p-14 transition-all duration-500 ease-out hover:bg-black hover:border-foreground/40 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group rounded-xl">
+            <div className="text-5xl md:text-6xl lg:text-7xl font-display tracking-tight mb-6 whitespace-nowrap overflow-hidden group-hover:text-[#eca8d6] transition-colors duration-500 group-hover:drop-shadow-[0_0_20px_rgba(236,168,214,0.4)] text-white">
               <AnimatedNumber end={metrics[0].value} suffix={metrics[0].suffix} prefix={metrics[0].prefix} />
             </div>
             <div className="mb-8 opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-              <DotGraph color="green" height={40} freq1={0.28} freq2={0.09} freqT={0.5} speed={0.018} baseline={0.35} amplitude={0.55} />
+              <DotGraph color="pink" height={40} freq1={0.28} freq2={0.09} freqT={0.5} speed={0.018} baseline={0.35} amplitude={0.55} />
             </div>
-            <div className="text-xl lg:text-2xl font-display text-foreground mb-2">{metrics[0].label}</div>
+            <div className="text-xl lg:text-2xl font-display text-white mb-2">{metrics[0].label}</div>
             <div className="text-xs text-muted-foreground font-mono uppercase tracking-widest">{metrics[0].sublabel}</div>
-          </div>
+          </motion.div>
 
-          {/* Metrics */}
           {metrics.slice(1).map((metric, index) => (
-            <div
+            <motion.div
+              variants={itemVariants}
               key={metric.label}
-              className={`bg-black/60 backdrop-blur-xl border border-foreground/10 p-8 flex flex-col items-start justify-between gap-8 transition-all duration-1000 ease-out hover:bg-black/80 hover:border-foreground/30 group ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
-              }`}
-              style={{ transitionDelay: `${(index + 1) * 150}ms` }}
+              className="bg-black/80 backdrop-blur-xl border border-foreground/10 p-8 flex flex-col items-start justify-between gap-8 transition-all duration-500 ease-out hover:bg-black hover:border-foreground/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] hover:-translate-y-2 group rounded-xl"
             >
               <div className="w-full">
                 <div className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest mb-3">{metric.sublabel}</div>
-                <div className="text-lg lg:text-xl font-display text-foreground mb-4">{metric.label}</div>
+                <div className="text-lg lg:text-xl font-display text-white mb-4">{metric.label}</div>
                 <div className="opacity-50 group-hover:opacity-100 transition-opacity duration-500">
                   <DotGraph
-                    color={index === 0 ? "white" : "white"}
+                    color="white"
                     height={28}
                     freq1={index === 0 ? 0.45 : 0.22}
                     freq2={index === 0 ? 0.18 : 0.07}
@@ -319,26 +314,28 @@ export function MetricsSection() {
                   />
                 </div>
               </div>
-              <div className="text-4xl md:text-5xl lg:text-6xl font-display tracking-tight w-full transition-transform duration-500 group-hover:-translate-y-1">
+              <div className="text-4xl md:text-5xl lg:text-6xl font-display tracking-tight w-full transition-transform duration-500 group-hover:-translate-y-1 text-white">
                 <AnimatedNumber end={metric.value} suffix={metric.suffix} prefix={metric.prefix} />
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Bottom ticker */}
-        <div className={`mt-20 pt-8 border-t border-foreground/10 flex flex-wrap items-center gap-x-12 gap-y-6 text-xs font-mono text-muted-foreground uppercase tracking-widest transition-all duration-1000 ease-out delay-500 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}>
-          <span className="hover:text-foreground transition-colors cursor-default">OpenAI GPT-4 Turbo</span>
-          <span className="hover:text-foreground transition-colors cursor-default">Anthropic Claude 3.5</span>
-          <span className="hover:text-foreground transition-colors cursor-default">Mistral Large</span>
-          <span className="hover:text-foreground transition-colors cursor-default">Llama 3.1</span>
-          <span className="text-foreground flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-foreground" />
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+          className="mt-20 pt-8 border-t border-foreground/10 flex flex-wrap items-center gap-x-12 gap-y-6 text-xs font-mono text-muted-foreground uppercase tracking-widest"
+        >
+          <span className="hover:text-white transition-colors cursor-default">OpenAI GPT-4 Turbo</span>
+          <span className="hover:text-white transition-colors cursor-default">Anthropic Claude 3.5</span>
+          <span className="hover:text-white transition-colors cursor-default">Mistral Large</span>
+          <span className="hover:text-white transition-colors cursor-default">Llama 3.1</span>
+          <span className="text-white flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             +12 more models
           </span>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

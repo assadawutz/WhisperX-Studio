@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { motion, useInView , Variants } from "framer-motion";
 
 const regions = [
   { name: "North America", nodes: 12, status: "operational" },
@@ -8,21 +9,9 @@ const regions = [
 ];
 
 export function InfrastructureSection() {
-  const [isVisible, setIsVisible] = useState(false);
   const [activeRegion, setActiveRegion] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,64 +20,74 @@ export function InfrastructureSection() {
     return () => clearInterval(interval);
   }, []);
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
   return (
     <section id="infra" ref={sectionRef} className="relative py-32 lg:py-40 overflow-hidden">
       
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        {/* Header */}
-        <div className="mb-20">
-          <span className={`inline-flex items-center gap-4 text-xs sm:text-sm font-mono text-muted-foreground uppercase tracking-wider mb-8 transition-all duration-1000 ease-out ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}>
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="mb-20"
+        >
+          <motion.span variants={itemVariants} className="inline-flex items-center gap-4 text-xs sm:text-sm font-mono text-muted-foreground uppercase tracking-wider mb-8">
             <span className="w-12 h-px bg-foreground/30" />
             Global infrastructure
-          </span>
+          </motion.span>
           
           <div className="grid lg:grid-cols-[auto_1fr] gap-8 lg:gap-16 items-center lg:items-stretch">
-            {/* Image globe — colonne gauche */}
-            <div className={`w-32 md:w-48 lg:w-72 xl:w-80 shrink-0 transition-all duration-1000 ease-out delay-200 ${
-              isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            }`}>
+            <motion.div 
+              variants={{
+                hidden: { opacity: 0, scale: 0.8, rotate: -10 },
+                visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 1.2, ease: "easeOut" } }
+              }}
+              className="w-32 md:w-48 lg:w-72 xl:w-80 shrink-0 relative"
+            >
+              <div className="absolute inset-0 bg-[#eca8d6]/10 blur-[80px] rounded-full mix-blend-screen" />
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/world-3i68QNWJwmO7W19ztZWbevAwJQHzYL.png"
                 alt="Global network sphere"
-                className="w-full h-full object-contain object-center"
+                className="w-full h-full object-contain object-center animate-[float_8s_ease-in-out_infinite]"
               />
-            </div>
+            </motion.div>
 
-            {/* Titre + description empilés */}
             <div className="flex flex-col justify-center">
-              <h2 className={`text-[clamp(3.5rem,8vw,8rem)] font-display tracking-tight leading-[0.9] transition-all duration-1000 ease-out ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-              }`}>
+              <motion.h2 variants={itemVariants} className="text-[clamp(3.5rem,8vw,8rem)] font-display tracking-tight leading-[0.9]">
                 Global by
                 <br />
                 <span className="text-muted-foreground">default.</span>
-              </h2>
+              </motion.h2>
 
-              <p className={`mt-8 text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-lg transition-all duration-1000 ease-out delay-100 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}>
+              <motion.p variants={itemVariants} className="mt-8 text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-lg">
                 Your agents run on distributed infrastructure across 29 regions.
                 Sub-50ms latency to 99% of the world.
-              </p>
+              </motion.p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Main content grid */}
-        <div className="grid lg:grid-cols-3 gap-4 lg:gap-6">
-          {/* Large stat card */}
-          <div className={`lg:col-span-2 relative p-8 lg:p-14 border border-foreground/10 bg-foreground/[0.02] overflow-hidden transition-all duration-1000 ease-out hover:border-foreground/30 hover:bg-foreground/[0.04] group ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}>
-            {/* Animated dots background with connecting lines */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid lg:grid-cols-3 gap-4 lg:gap-6"
+        >
+          <motion.div variants={itemVariants} className="lg:col-span-2 relative p-8 lg:p-14 border border-foreground/10 bg-foreground/[0.02] rounded-xl overflow-hidden group hover:border-foreground/30 hover:bg-foreground/[0.04] transition-colors duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.03)]">
             <div className="absolute inset-0 opacity-70 pointer-events-none">
-              {/* SVG for connecting lines */}
-              <svg
-                className="absolute inset-0 w-full h-full"
-                style={{ pointerEvents: "none" }}
-              >
+              <svg className="absolute inset-0 w-full h-full" style={{ pointerEvents: "none" }}>
                 <defs>
                   <style>{`
                     @keyframes drawLine {
@@ -119,17 +118,16 @@ export function InfrastructureSection() {
                       x2={`${x2}%`}
                       y2={`${y2}%`}
                       className="connecting-line transition-opacity duration-500 group-hover:opacity-100"
-                      style={{ animationDelay: `${i * 0.15}s`, opacity: 0.5 }}
+                      style={{ animationDelay: `${i * 0.15}s`, opacity: 0.3 }}
                     />
                   );
                 })}
               </svg>
 
-              {/* Dots */}
               {[...Array(20)].map((_, i) => (
                 <div
                   key={i}
-                  className="absolute w-1.5 h-1.5 rounded-full bg-[#eca8d6] transition-transform duration-500 group-hover:scale-150"
+                  className="absolute w-1.5 h-1.5 rounded-full bg-[#eca8d6] transition-transform duration-500 group-hover:scale-[2] group-hover:shadow-[0_0_10px_#eca8d6]"
                   style={{
                     left: `${10 + (i % 5) * 20}%`,
                     top: `${10 + Math.floor(i / 5) * 25}%`,
@@ -139,70 +137,74 @@ export function InfrastructureSection() {
               ))}
             </div>
             
-            <div className="relative z-10">
+            <div className="relative z-10 pointer-events-none">
               <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-[clamp(4rem,10vw,10rem)] font-display leading-none">29</span>
+                <span className="text-[clamp(4rem,10vw,10rem)] font-display leading-none text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#eca8d6] transition-all duration-700">29</span>
                 <span className="text-xl lg:text-3xl text-muted-foreground font-display">regions</span>
               </div>
-              <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
+              <p className="text-lg text-muted-foreground max-w-md leading-relaxed group-hover:text-foreground/80 transition-colors">
                 Compute nodes distributed globally for maximum redundancy and minimum latency.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Stacked stat cards */}
           <div className="flex flex-col gap-4 lg:gap-6">
-            <div className={`p-8 lg:p-10 border border-foreground/10 bg-foreground/[0.02] transition-all duration-1000 ease-out hover:border-foreground/30 hover:bg-foreground/[0.04] group delay-100 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}>
-              <span className="text-5xl lg:text-6xl xl:text-7xl font-display group-hover:text-[#eca8d6] transition-colors duration-500">99.99%</span>
-              <span className="block text-xs uppercase tracking-wider font-mono text-muted-foreground mt-4">Uptime SLA</span>
-            </div>
+            <motion.div variants={itemVariants} className="p-8 lg:p-10 border border-foreground/10 bg-foreground/[0.02] rounded-xl transition-all duration-500 hover:border-foreground/30 hover:bg-foreground/[0.04] group hover:-translate-y-1 hover:shadow-xl">
+              <span className="text-5xl lg:text-6xl xl:text-7xl font-display text-foreground group-hover:text-[#eca8d6] group-hover:drop-shadow-[0_0_15px_rgba(236,168,214,0.4)] transition-all duration-500">99.99%</span>
+              <span className="block text-xs uppercase tracking-wider font-mono text-muted-foreground mt-4 group-hover:text-foreground/60 transition-colors">Uptime SLA</span>
+            </motion.div>
             
-            <div className={`p-8 lg:p-10 border border-foreground/10 bg-foreground/[0.02] transition-all duration-1000 ease-out hover:border-foreground/30 hover:bg-foreground/[0.04] group delay-200 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}>
-              <span className="text-5xl lg:text-6xl xl:text-7xl font-display group-hover:text-[#67e8f9] transition-colors duration-500">&lt;50ms</span>
-              <span className="block text-xs uppercase tracking-wider font-mono text-muted-foreground mt-4">Global latency</span>
-            </div>
+            <motion.div variants={itemVariants} className="p-8 lg:p-10 border border-foreground/10 bg-foreground/[0.02] rounded-xl transition-all duration-500 hover:border-foreground/30 hover:bg-foreground/[0.04] group hover:-translate-y-1 hover:shadow-xl">
+              <span className="text-5xl lg:text-6xl xl:text-7xl font-display text-foreground group-hover:text-[#67e8f9] group-hover:drop-shadow-[0_0_15px_rgba(103,232,249,0.4)] transition-all duration-500">&lt;50ms</span>
+              <span className="block text-xs uppercase tracking-wider font-mono text-muted-foreground mt-4 group-hover:text-foreground/60 transition-colors">Global latency</span>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Region list */}
-        <div className={`mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 transition-all duration-1000 ease-out delay-300 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}>
-          {regions.map((region, index) => (
-            <button
-              key={region.name}
-              onClick={() => setActiveRegion(index)}
-              onMouseEnter={() => setActiveRegion(index)}
-              className={`text-left p-6 border transition-all duration-300 ease-out outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 ${
-                activeRegion === index 
-                  ? "border-foreground/40 bg-foreground/[0.06] shadow-lg shadow-foreground/5" 
-                  : "border-foreground/10 hover:border-foreground/30 hover:bg-foreground/[0.02]"
-              }`}
-              style={{
-                transform: activeRegion === index ? "translateY(-2px)" : "translateY(0)"
-              }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className={`w-2 h-2 rounded-full transition-colors duration-500 ${
-                  activeRegion === index ? "bg-[#eca8d6] shadow-[0_0_8px_rgba(236,168,214,0.8)]" : "bg-foreground/20"
-                }`} />
-                <span className={`text-[10px] font-mono uppercase tracking-widest transition-colors duration-300 ${
-                  activeRegion === index ? "text-foreground" : "text-muted-foreground"
-                }`}>
-                  {region.status}
-                </span>
-              </div>
-              <span className={`font-display text-2xl block mb-1 transition-colors duration-300 ${
-                activeRegion === index ? "text-foreground" : "text-foreground/80"
-              }`}>{region.name}</span>
-              <span className="text-sm text-muted-foreground font-mono">{region.nodes} nodes</span>
-            </button>
-          ))}
-        </div>
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4"
+        >
+          {regions.map((region, index) => {
+            const isActive = activeRegion === index;
+            return (
+              <motion.button
+                variants={itemVariants}
+                key={region.name}
+                onClick={() => setActiveRegion(index)}
+                onMouseEnter={() => setActiveRegion(index)}
+                className={`text-left p-6 border rounded-xl transition-all duration-300 ease-out outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 relative overflow-hidden ${
+                  isActive 
+                    ? "border-foreground/40 bg-foreground/[0.06] shadow-[0_10px_30px_rgba(255,255,255,0.05)] scale-[1.02]" 
+                    : "border-foreground/10 hover:border-foreground/30 hover:bg-foreground/[0.03]"
+                }`}
+              >
+                {isActive && (
+                  <motion.div 
+                    layoutId="regionHighlight"
+                    className="absolute inset-0 bg-gradient-to-tr from-white/[0.05] to-transparent pointer-events-none"
+                  />
+                )}
+                <div className="flex items-center gap-3 mb-4 relative z-10">
+                  <span className={`w-2 h-2 rounded-full transition-all duration-500 ${
+                    isActive ? "bg-[#eca8d6] shadow-[0_0_10px_rgba(236,168,214,0.8)] scale-125" : "bg-foreground/20"
+                  }`} />
+                  <span className={`text-[10px] font-mono uppercase tracking-widest transition-colors duration-300 ${
+                    isActive ? "text-foreground" : "text-muted-foreground"
+                  }`}>
+                    {region.status}
+                  </span>
+                </div>
+                <span className={`font-display text-2xl block mb-1 relative z-10 transition-colors duration-300 ${
+                  isActive ? "text-foreground" : "text-foreground/80"
+                }`}>{region.name}</span>
+                <span className="text-sm text-muted-foreground font-mono relative z-10">{region.nodes} nodes</span>
+              </motion.button>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

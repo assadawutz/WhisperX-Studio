@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion, useInView , Variants } from "framer-motion";
 
 const features = [
   {
@@ -42,16 +43,16 @@ function ParticleVisualization() {
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      ctx.setTransform(1, 0, 0, 1, 0, 0); // reset before scaling
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.scale(dpr, dpr);
     };
     resize();
     window.addEventListener("resize", resize);
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      // Only track if within or near canvas
       mouseRef.current = {
         x: (e.clientX - rect.left) / rect.width,
         y: (e.clientY - rect.top) / rect.height,
@@ -59,7 +60,6 @@ function ParticleVisualization() {
     };
     canvas.addEventListener("mousemove", handleMouseMove);
 
-    // Generate stable particle positions
     const COUNT = 70;
     const particles = Array.from({ length: COUNT }, (_, i) => {
       const seed = i * 1.618;
@@ -102,8 +102,22 @@ function ParticleVisualization() {
 
         ctx.beginPath();
         ctx.arc(x, y, p.radius + pulse * 0.8, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+        ctx.fillStyle = `rgba(236, 168, 214, ${alpha})`; // Hint of #eca8d6
         ctx.fill();
+        
+        // Connect nearby particles
+        particles.forEach(other => {
+          const ox = other.bx * w + Math.sin(time * other.speed * 0.4 + other.phase) * 38;
+          const oy = other.by * h + Math.cos(time * other.speed * 0.3 + other.phase * 0.7) * 24;
+          const d2 = Math.sqrt((x-ox)**2 + (y-oy)**2);
+          if (d2 < 60) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(ox, oy);
+            ctx.strokeStyle = `rgba(255,255,255,${0.05 * (1 - d2/60)})`;
+            ctx.stroke();
+          }
+        });
       });
 
       time += 0.016;
@@ -121,36 +135,38 @@ function ParticleVisualization() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-auto transition-opacity duration-1000 ease-in-out"
+      className="absolute inset-0 pointer-events-auto transition-opacity duration-1000 ease-in-out mix-blend-screen"
       style={{ width: "100%", height: "100%" }}
     />
   );
 }
 
 export function FeaturesSection() {
-  const [isVisible, setIsVisible] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  // Cycle features automatically if user doesn't hover
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveFeature((prev) => (prev + 1) % features.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
 
   return (
     <section
@@ -159,110 +175,126 @@ export function FeaturesSection() {
       className="relative py-24 lg:py-32 overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        {/* Header - Full width with diagonal layout */}
-        <div className="relative mb-16 lg:mb-24">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="relative mb-16 lg:mb-24"
+        >
           <div className="grid lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-7">
-              <span className="inline-flex items-center gap-3 text-xs sm:text-sm font-mono text-muted-foreground uppercase tracking-wider mb-6">
+              <motion.span variants={itemVariants} className="inline-flex items-center gap-3 text-xs sm:text-sm font-mono text-muted-foreground uppercase tracking-wider mb-6">
                 <span className="w-12 h-px bg-foreground/30" />
                 Capabilities
-              </span>
-              <h2
-                className={`text-[clamp(3rem,8vw,8rem)] font-display tracking-tight leading-[0.9] transition-all duration-1000 ease-out ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
+              </motion.span>
+              <motion.h2
+                variants={itemVariants}
+                className="text-[clamp(3rem,8vw,8rem)] font-display tracking-tight leading-[0.9]"
               >
                 Intelligent
                 <br />
                 <span className="text-muted-foreground">workers.</span>
-              </h2>
+              </motion.h2>
             </div>
             <div className="lg:col-span-5 lg:pb-4">
-              <p className={`text-lg sm:text-xl text-muted-foreground leading-relaxed transition-all duration-1000 ease-out delay-200 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}>
+              <motion.p variants={itemVariants} className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-lg">
                 Deploy autonomous AI agents that execute complex tasks across distributed infrastructure. No supervision required.
-              </p>
+              </motion.p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Dynamic Feature Display */}
-        <div className="grid lg:grid-cols-12 gap-4 lg:gap-6">
-          {/* Main Viewer */}
-          <div 
-            className={`lg:col-span-8 xl:col-span-9 relative bg-black border border-foreground/10 min-h-[500px] lg:min-h-[600px] overflow-hidden group transition-all duration-700 ease-out flex flex-col lg:flex-row ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}
-          >
-            {/* Left: text content */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          className="grid lg:grid-cols-12 gap-4 lg:gap-6"
+        >
+          <div className="lg:col-span-8 xl:col-span-9 relative bg-black border border-foreground/10 rounded-xl min-h-[500px] lg:min-h-[600px] overflow-hidden group flex flex-col lg:flex-row hover:border-foreground/30 transition-colors duration-500 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-foreground/[0.03] to-transparent pointer-events-none" />
+            
             <div className="relative flex-1 p-8 lg:p-14 bg-black flex flex-col justify-center">
               <ParticleVisualization />
               <div className="relative z-10">
-                <span className="font-mono text-sm text-[#eca8d6] transition-colors duration-300">
-                  {features[activeFeature].number}
-                </span>
-                <h3 className="text-4xl lg:text-5xl font-display mt-4 mb-6 transition-all duration-500 ease-out">
-                  {features[activeFeature].title}
-                </h3>
-                <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-md mb-10 transition-all duration-500 ease-out">
-                  {features[activeFeature].description}
-                </p>
-                <div>
-                  <span className="text-5xl lg:text-7xl font-display text-white transition-all duration-500">{features[activeFeature].stats.value}</span>
-                  <span className="block text-xs uppercase tracking-wider text-muted-foreground font-mono mt-3">{features[activeFeature].stats.label}</span>
-                </div>
+                <motion.div
+                  key={activeFeature}
+                  initial={{ opacity: 0, filter: "blur(10px)", x: -20 }}
+                  animate={{ opacity: 1, filter: "blur(0px)", x: 0 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                  <span className="font-mono text-sm text-[#eca8d6] drop-shadow-[0_0_8px_rgba(236,168,214,0.5)]">
+                    {features[activeFeature].number}
+                  </span>
+                  <h3 className="text-4xl lg:text-5xl font-display mt-4 mb-6">
+                    {features[activeFeature].title}
+                  </h3>
+                  <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-md mb-10">
+                    {features[activeFeature].description}
+                  </p>
+                  <div>
+                    <span className="text-5xl lg:text-7xl font-display text-white">{features[activeFeature].stats.value}</span>
+                    <span className="block text-xs uppercase tracking-wider text-muted-foreground font-mono mt-3">{features[activeFeature].stats.label}</span>
+                  </div>
+                </motion.div>
               </div>
             </div>
 
-            {/* Right: mirrored image, hidden on mobile */}
             <div className="hidden lg:block relative w-[45%] shrink-0 overflow-hidden bg-black">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Upscaled%20Image%20%2812%29-ng3RrNnsPMJ5CrtOjcPTmhHg01W11q.png"
                 alt=""
                 aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
-                style={{ transform: "scaleX(-1) scale(1.02)" }}
+                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[10s] ease-linear group-hover:scale-110"
+                style={{ transform: "scaleX(-1)" }}
               />
-              {/* Fade left edge into black */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
+              <div className="absolute inset-0 mix-blend-overlay opacity-30 bg-[#eca8d6]" />
             </div>
           </div>
 
-          {/* Feature Selectors */}
-          <div className={`lg:col-span-4 xl:col-span-3 flex flex-col gap-3 transition-all duration-700 ease-out delay-200 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}>
-            {features.map((feature, idx) => (
-              <button
-                key={feature.number}
-                onMouseEnter={() => setActiveFeature(idx)}
-                onClick={() => setActiveFeature(idx)}
-                className={`relative flex flex-col items-start text-left p-6 lg:p-8 border transition-all duration-300 ease-out outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 ${
-                  activeFeature === idx
-                    ? "bg-foreground/[0.04] border-foreground/40"
-                    : "bg-transparent border-foreground/10 hover:border-foreground/30 hover:bg-foreground/[0.02]"
-                }`}
-              >
-                <div className="flex items-center gap-4 w-full mb-2">
-                  <span className={`font-mono text-xs transition-colors duration-300 ${
-                    activeFeature === idx ? "text-[#eca8d6]" : "text-muted-foreground"
-                  }`}>
-                    {feature.number}
-                  </span>
-                  {activeFeature === idx && (
-                    <span className="h-px flex-1 bg-gradient-to-r from-[#eca8d6] to-transparent" />
+          <div className="lg:col-span-4 xl:col-span-3 flex flex-col gap-3">
+            {features.map((feature, idx) => {
+              const isActive = activeFeature === idx;
+              return (
+                <button
+                  key={feature.number}
+                  onMouseEnter={() => setActiveFeature(idx)}
+                  onClick={() => setActiveFeature(idx)}
+                  className={`relative flex flex-col items-start text-left p-6 lg:p-8 rounded-xl border transition-all duration-300 ease-out outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 overflow-hidden ${
+                    isActive
+                      ? "bg-foreground/[0.04] border-foreground/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] scale-[1.02]"
+                      : "bg-transparent border-foreground/10 hover:border-foreground/30 hover:bg-foreground/[0.02]"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div 
+                      layoutId="featureHighlight"
+                      className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none"
+                    />
                   )}
-                </div>
-                <h4 className={`text-xl lg:text-2xl font-display transition-colors duration-300 ${
-                  activeFeature === idx ? "text-foreground" : "text-muted-foreground"
-                }`}>
-                  {feature.title}
-                </h4>
-              </button>
-            ))}
+                  <div className="flex items-center gap-4 w-full mb-2 relative z-10">
+                    <span className={`font-mono text-xs transition-colors duration-300 ${
+                      isActive ? "text-[#eca8d6]" : "text-muted-foreground"
+                    }`}>
+                      {feature.number}
+                    </span>
+                    {isActive && (
+                      <motion.span 
+                        layoutId="featureLine"
+                        className="h-px flex-1 bg-gradient-to-r from-[#eca8d6] to-transparent" 
+                      />
+                    )}
+                  </div>
+                  <h4 className={`text-xl lg:text-2xl font-display relative z-10 transition-colors duration-300 ${
+                    isActive ? "text-foreground" : "text-muted-foreground"
+                  }`}>
+                    {feature.title}
+                  </h4>
+                </button>
+              );
+            })}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

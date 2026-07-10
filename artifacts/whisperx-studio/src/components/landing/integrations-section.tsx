@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { motion, useInView , Variants } from "framer-motion";
 
 const logos: Record<string, React.ReactNode> = {
   OpenAI: (
@@ -79,80 +80,80 @@ const integrations = [
 ];
 
 export function IntegrationsSection() {
-  const [isVisible, setIsVisible] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+  
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: "easeOut" } }
+  };
 
   return (
     <section id="integrations" ref={sectionRef} className="relative overflow-hidden bg-black text-white">
 
-      {/* Header — centré verticalement sur l'image */}
       <div className="relative z-10 pt-32 lg:pt-40 text-center px-6">
-        <span className={`inline-flex items-center gap-4 text-xs sm:text-sm font-mono text-muted-foreground uppercase tracking-wider mb-8 transition-all duration-1000 ease-out justify-center ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}>
-          <span className="w-8 sm:w-12 h-px bg-foreground/30" />
-          Integrations
-          <span className="w-8 sm:w-12 h-px bg-foreground/30" />
-        </span>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="inline-flex items-center gap-4 text-xs sm:text-sm font-mono text-muted-foreground uppercase tracking-wider mb-8 justify-center">
+            <span className="w-8 sm:w-12 h-px bg-foreground/30" />
+            Integrations
+            <span className="w-8 sm:w-12 h-px bg-foreground/30" />
+          </span>
 
-        <h2 className={`text-[clamp(3.5rem,8vw,8rem)] font-display tracking-tight leading-[0.9] transition-all duration-1000 ease-out delay-100 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}>
-          Connect
-          <br />
-          <span className="text-muted-foreground">everything.</span>
-        </h2>
+          <h2 className="text-[clamp(3.5rem,8vw,8rem)] font-display tracking-tight leading-[0.9]">
+            Connect
+            <br />
+            <span className="text-muted-foreground">everything.</span>
+          </h2>
 
-        <p className={`mt-8 text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto transition-all duration-1000 ease-out delay-200 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}>
-          Your agents connect to 100+ tools and services. They read, write, and act autonomously across your entire stack.
-        </p>
+          <p className="mt-8 text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto">
+            Your agents connect to 100+ tools and services. They read, write, and act autonomously across your entire stack.
+          </p>
+        </motion.div>
       </div>
 
-      {/* Full-width image */}
-      <div className={`relative left-1/2 -translate-x-1/2 w-screen mt-8 lg:-mt-16 transition-all duration-1000 ease-out delay-300 ${
-        isVisible ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
-      }`}>
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+        transition={{ duration: 1.2, delay: 0.2 }}
+        className="relative left-1/2 -translate-x-1/2 w-screen mt-8 lg:-mt-16"
+      >
         <img
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/connection-KeJwWPQvn6l0a7C48tCARYtNEdC92H.png"
           alt="Connections visualization"
           aria-hidden="true"
-          className="w-full h-auto object-cover opacity-90"
+          className="w-full h-auto object-cover opacity-90 animate-[float_10s_ease-in-out_infinite]"
         />
-        {/* Gradients for smooth blending */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent pointer-events-none" />
-      </div>
+      </motion.div>
 
-      {/* Integration grid — remonte sur l'image avec spacing mobile approprié */}
       <div className="relative z-10 -mt-16 lg:-mt-32 max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4 mb-16 lg:mb-24">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4 mb-16 lg:mb-24"
+        >
           {integrations.map((integration, index) => (
-            <button
+            <motion.button
+              variants={itemVariants}
               key={integration.name}
-              className={`group relative overflow-hidden p-6 lg:p-8 border transition-all duration-500 ease-out outline-none focus-visible:ring-2 focus-visible:ring-white/50 text-left ${
+              className={`group relative overflow-hidden p-6 lg:p-8 rounded-xl border transition-all duration-300 ease-out outline-none focus-visible:ring-2 focus-visible:ring-white/50 text-left ${
                 hoveredIndex === index
-                  ? "border-white/40 bg-white/[0.04] scale-[1.02] shadow-[0_0_30px_rgba(255,255,255,0.05)] z-10"
+                  ? "border-white/40 bg-white/[0.06] scale-[1.02] shadow-[0_10px_40px_rgba(255,255,255,0.08)] z-10"
                   : "border-white/10 hover:border-white/30 bg-black/60 backdrop-blur-sm"
-              } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-              style={{
-                transitionDelay: `${(index % 4) * 100 + 300}ms`,
-              }}
+              }`}
               onMouseEnter={(e) => {
                 setHoveredIndex(index);
                 const rect = e.currentTarget.getBoundingClientRect();
@@ -169,7 +170,6 @@ export function IntegrationsSection() {
                 setMousePos(null);
               }}
             >
-              {/* Cursor-following halo */}
               {hoveredIndex === index && mousePos && (
                 <span
                   aria-hidden="true"
@@ -179,8 +179,8 @@ export function IntegrationsSection() {
                   }}
                 />
               )}
-              {/* Category tag */}
-              <span className={`absolute top-4 right-4 text-[10px] font-mono px-2 py-0.5 rounded-sm transition-colors duration-300 ${
+              
+              <span className={`absolute top-4 right-4 text-[10px] font-mono px-2 py-0.5 rounded-sm transition-colors duration-300 relative z-10 ${
                 hoveredIndex === index
                   ? "bg-white text-black"
                   : "bg-white/10 text-white/60 group-hover:bg-white/20 group-hover:text-white"
@@ -188,39 +188,39 @@ export function IntegrationsSection() {
                 {integration.category}
               </span>
 
-              {/* Logo */}
-              <div className={`w-8 h-8 lg:w-10 lg:h-10 mb-8 lg:mb-10 flex items-center justify-center transition-all duration-500 ${
-                hoveredIndex === index ? "text-white scale-110" : "text-white/60"
+              <div className={`w-8 h-8 lg:w-10 lg:h-10 mb-8 lg:mb-10 flex items-center justify-center transition-all duration-500 relative z-10 ${
+                hoveredIndex === index ? "text-white scale-110 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" : "text-white/60"
               }`}>
                 {logos[integration.name]}
               </div>
 
-              <span className={`font-display text-xl lg:text-2xl block transition-colors duration-300 ${
+              <span className={`font-display text-xl lg:text-2xl block relative z-10 transition-colors duration-300 ${
                 hoveredIndex === index ? "text-white" : "text-white/80"
               }`}>{integration.name}</span>
 
-              {/* Animated underline */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 overflow-hidden">
-                <div className={`h-full bg-white transition-transform duration-500 ease-out origin-left ${
+                <div className={`h-full bg-gradient-to-r from-white/80 to-white transition-transform duration-500 ease-out origin-left ${
                   hoveredIndex === index ? "scale-x-100" : "scale-x-0"
                 }`} />
               </div>
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Bottom stats row */}
-        <div className={`flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-12 pt-12 border-t border-white/10 transition-all duration-1000 ease-out delay-700 pb-32 lg:pb-40 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-12 pt-12 border-t border-white/10 pb-32 lg:pb-40"
+        >
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 lg:gap-16 w-full lg:w-auto">
             {[
               { value: "100+", label: "Integrations" },
               { value: "OAuth", label: "Auth built-in" },
               { value: "Webhooks", label: "Real-time sync" },
             ].map((stat) => (
-              <div key={stat.label} className="flex flex-col gap-2">
-                <span className="text-3xl lg:text-4xl font-display">{stat.value}</span>
+              <div key={stat.label} className="flex flex-col gap-2 group cursor-default">
+                <span className="text-3xl lg:text-4xl font-display group-hover:text-[#eca8d6] transition-colors">{stat.value}</span>
                 <span className="text-xs lg:text-sm text-white/50 font-mono uppercase tracking-widest">{stat.label}</span>
               </div>
             ))}
@@ -230,7 +230,7 @@ export function IntegrationsSection() {
             View all integrations
             <span className="group-hover:translate-x-1 transition-transform duration-300 ease-out">&rarr;</span>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
