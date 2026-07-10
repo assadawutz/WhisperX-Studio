@@ -1,0 +1,2267 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PART V — FULL PRODUCT-WIDE VISUAL EXPERIENCE
+
+MARKETPLACE-QUALITY INTERACTION × MOTION × ANIMATION × SPATIAL PREVIEW
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Sections 1–67 remain mandatory.
+
+This section does not authorize redesign.
+
+It does not replace the approved WHISPERX | STUDIO UX/UI.
+
+It does not authorize a new visual language.
+
+It does not authorize generic SaaS styling, generic IDE styling, excessive cards,
+
+excessive glass, excessive glow, excessive gradients, or decorative motion.
+
+Its purpose is to elevate the ENTIRE existing WHISPERX | STUDIO frontend so that
+
+every meaningful screen, route, surface, panel, object, component, module, skill,
+
+agent, template, preview, inspector, command surface, and system state feels as
+
+crafted, interactive, responsive, spatial, polished, and alive as the strongest
+
+existing Marketplace experience.
+
+The Marketplace-quality experience is a QUALITY REFERENCE.
+
+It is not permission to copy one Marketplace layout across every route.
+
+Do not turn the entire product into a marketplace.
+
+Do not turn every surface into cards.
+
+Do not give every route the same animation.
+
+Do not apply identical hover effects everywhere.
+
+Instead:
+
+EXTRACT THE QUALITY.
+
+PRESERVE THE CONTEXT.
+
+ADAPT THE INTERACTION.
+
+EXPAND THE MOTION LANGUAGE.
+
+CONNECT THE EXPERIENCE.
+
+The target is:
+
+SAME APPROVED WHISPERX PRODUCT.
+
+SAME APPROVED DESIGN DNA.
+
+SAME APPROVED UX/UI.
+
+MORE ALIVE.
+
+MORE INTERACTIVE.
+
+MORE SPATIAL.
+
+MORE RESPONSIVE.
+
+MORE PRECISE.
+
+MORE MEMORABLE.
+
+MORE PRODUCTION-POLISHED.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+68. PRIMARY VISUAL EXPERIENCE MISSION
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Inspect the complete current frontend.
+
+Inspect every route.
+
+Inspect every major work surface.
+
+Inspect every component.
+
+Inspect every interaction.
+
+Inspect every existing animation.
+
+Inspect every existing motion primitive.
+
+Inspect every hover.
+
+Inspect every focus state.
+
+Inspect every active state.
+
+Inspect every transition.
+
+Inspect every overlay.
+
+Inspect every drawer.
+
+Inspect every sheet.
+
+Inspect every inspector.
+
+Inspect every preview.
+
+Inspect every Marketplace experience.
+
+Determine what makes the strongest existing Marketplace surfaces feel:
+
+- alive;
+
+- premium;
+
+- tactile;
+
+- responsive;
+
+- spatial;
+
+- cinematic;
+
+- intelligent;
+
+- immediate;
+
+- discoverable;
+
+- crafted.
+
+Identify reusable qualities including:
+
+- entry choreography;
+
+- item focus;
+
+- item selection;
+
+- hover response;
+
+- pointer response;
+
+- preview behavior;
+
+- detail expansion;
+
+- active state;
+
+- transition continuity;
+
+- shared-layout behavior;
+
+- depth;
+
+- scale;
+
+- cropping;
+
+- typography movement;
+
+- spatial layering;
+
+- contextual metadata;
+
+- progressive disclosure;
+
+- micro feedback;
+
+- motion hierarchy.
+
+Then extend those qualities across the full product according to context.
+
+Do not copy layouts mechanically.
+
+Do not copy animation mechanically.
+
+Do not force Marketplace composition onto technical tools.
+
+Use Marketplace quality as the minimum interaction-quality benchmark.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+69. ENTIRE PRODUCT EXPERIENCE AUDIT
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Audit every significant frontend surface.
+
+For each route or major surface determine:
+
+- current visual quality;
+
+- current interaction quality;
+
+- current motion quality;
+
+- current hover quality;
+
+- current focus quality;
+
+- current transition quality;
+
+- current spatial depth;
+
+- current responsive quality;
+
+- current mobile quality;
+
+- current dark-mode quality;
+
+- current light-mode quality;
+
+- current loading experience;
+
+- current empty experience;
+
+- current error experience;
+
+- current selection feedback;
+
+- current contextual continuity;
+
+- current perceived responsiveness;
+
+- current accessibility;
+
+- current performance cost.
+
+Classify each surface as:
+
+PRESERVE
+
+REFINE
+
+COMPLETE
+
+CONNECT
+
+MOTION UPGRADE
+
+INTERACTION UPGRADE
+
+RESPONSIVE UPGRADE
+
+STATE UPGRADE
+
+PERFORMANCE REPAIR
+
+ACCESSIBILITY REPAIR
+
+REPLACE VERIFIED PLACEHOLDER
+
+Do not classify an approved strong route as REDESIGN.
+
+Create:
+
+docs/PRODUCT_EXPERIENCE_AUDIT.md
+
+docs/MOTION_COVERAGE_MATRIX.md
+
+docs/INTERACTION_COVERAGE_MATRIX.md
+
+These documents must reflect actual inspection.
+
+They are not substitutes for implementation.
+
+After audit, continue directly into implementation.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+70. MARKETPLACE-QUALITY BENCHMARK
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The strongest existing Marketplace implementation is an internal quality benchmark.
+
+Inspect it directly.
+
+Do not assume what it contains.
+
+Determine why it works.
+
+Potential qualities may include:
+
+- strong entry composition;
+
+- responsive hover;
+
+- active-item emphasis;
+
+- image or preview transformation;
+
+- layered content;
+
+- detail reveal;
+
+- animated metadata;
+
+- controlled scale;
+
+- depth response;
+
+- shared-layout continuity;
+
+- smooth filter transitions;
+
+- contextual expansion;
+
+- meaningful preview;
+
+- strong pointer feedback;
+
+- precise easing;
+
+- hierarchy during motion;
+
+- visual continuity between list and detail.
+
+Extract actual reusable patterns from repository evidence.
+
+Do not invent a generic Marketplace system if a strong existing implementation already exists.
+
+Where Marketplace motion is technically strong:
+
+PRESERVE AND REUSE ITS PRIMITIVES.
+
+Where it is duplicated:
+
+CONSOLIDATE CAREFULLY.
+
+Where it is visually strong but technically inefficient:
+
+OPTIMIZE INTERNALS WHILE PRESERVING OUTPUT.
+
+Where it is route-specific:
+
+ADAPT THE PRINCIPLE, NOT THE EXACT ANIMATION.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+71. GLOBAL MOTION ARCHITECTURE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Create or complete one coherent WHISPERX motion architecture.
+
+Motion must operate at multiple levels.
+
+LEVEL 1 — MICRO RESPONSE
+
+For:
+
+- buttons;
+
+- icons;
+
+- toggles;
+
+- tabs;
+
+- navigation;
+
+- tree items;
+
+- commands;
+
+- status indicators;
+
+- handles;
+
+- controls.
+
+Possible behavior:
+
+- 1–4 px translation;
+
+- restrained scale;
+
+- opacity;
+
+- line extension;
+
+- icon movement;
+
+- border activation;
+
+- signal-red reveal;
+
+- masked label change;
+
+- subtle spring response.
+
+LEVEL 2 — COMPONENT RESPONSE
+
+For:
+
+- Marketplace items;
+
+- templates;
+
+- skills;
+
+- modules;
+
+- agents;
+
+- components;
+
+- assets;
+
+- project items;
+
+- file items;
+
+- search results.
+
+Possible behavior:
+
+- image transformation;
+
+- preview activation;
+
+- contextual metadata reveal;
+
+- focus expansion;
+
+- active-state depth;
+
+- shared-layout transitions;
+
+- selection continuity.
+
+LEVEL 3 — PANEL AND WORKSPACE TRANSITION
+
+For:
+
+- inspector;
+
+- AI panel;
+
+- explorer;
+
+- terminal;
+
+- output;
+
+- problems;
+
+- logs;
+
+- drawers;
+
+- sheets;
+
+- preview regions.
+
+Possible behavior:
+
+- directional slide;
+
+- mask reveal;
+
+- width transition;
+
+- opacity transition;
+
+- layered movement;
+
+- shared boundary transition.
+
+LEVEL 4 — ROUTE TRANSITION
+
+For movement between meaningful product areas.
+
+Possible behavior:
+
+- controlled fade;
+
+- directional continuity;
+
+- X-mask transition;
+
+- shared object;
+
+- typography transition;
+
+- spatial plane movement.
+
+Do not block work.
+
+Do not delay navigation unnecessarily.
+
+LEVEL 5 — CINEMATIC MOMENT
+
+Reserved for:
+
+- landing hero;
+
+- major section transitions;
+
+- major X portals;
+
+- selected spatial scenes;
+
+- major product storytelling.
+
+Do not use cinematic motion inside every technical workflow.
+
+LEVEL 6 — SYSTEM-STATE MOTION
+
+For:
+
+- AI thinking;
+
+- agent execution;
+
+- validation;
+
+- build;
+
+- deployment;
+
+- Git changes;
+
+- synchronization;
+
+- connection;
+
+- loading;
+
+- success;
+
+- warning;
+
+- error.
+
+Motion must communicate actual state.
+
+Never fake activity.
+
+Never animate a success state before success is verified.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+72. MOTION TOKEN SYSTEM
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Audit existing motion values before creating new ones.
+
+Consolidate reusable motion tokens where safe.
+
+Define semantic tokens for:
+
+DURATION
+
+- instant;
+
+- micro;
+
+- fast;
+
+- standard;
+
+- deliberate;
+
+- cinematic.
+
+EASING
+
+- enter;
+
+- exit;
+
+- standard;
+
+- emphasized;
+
+- spatial;
+
+- cinematic.
+
+SPRING
+
+- control;
+
+- hover;
+
+- panel;
+
+- shared layout;
+
+- drag;
+
+- spatial object.
+
+DISTANCE
+
+- micro;
+
+- control;
+
+- panel;
+
+- route;
+
+- spatial.
+
+STAGGER
+
+- micro;
+
+- list;
+
+- editorial;
+
+- cinematic.
+
+BLUR
+
+- subtle;
+
+- transition;
+
+- atmospheric.
+
+Do not force every animation to use identical values.
+
+Semantic motion consistency is required.
+
+Mechanical uniformity is not.
+
+Preserve intentional composition-specific timing where justified.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+73. GLOBAL HOVER QUALITY LOCK
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Every interactive pointer surface must have intentional hover behavior where hover is available.
+
+Do not use one universal hover.
+
+Classify hover by purpose.
+
+NAVIGATION HOVER
+
+May use:
+
+- line extension;
+
+- directional movement;
+
+- signal reveal;
+
+- typography shift;
+
+- X activation.
+
+COMMAND HOVER
+
+May use:
+
+- execution emphasis;
+
+- keyboard hint reveal;
+
+- icon movement;
+
+- border activation.
+
+MARKETPLACE HOVER
+
+May use:
+
+- preview activation;
+
+- image crop change;
+
+- scale;
+
+- metadata reveal;
+
+- depth;
+
+- controlled pointer response.
+
+EDITOR HOVER
+
+Must remain restrained.
+
+May use:
+
+- row emphasis;
+
+- contextual action reveal;
+
+- diagnostic reveal;
+
+- AI action reveal.
+
+SPATIAL OBJECT HOVER
+
+May use:
+
+- proximity response;
+
+- controlled rotation;
+
+- internal light;
+
+- focus;
+
+- semantic metadata reveal.
+
+DESTRUCTIVE HOVER
+
+Must communicate risk clearly.
+
+Do not use playful motion for destructive actions.
+
+Do not make every element move upward.
+
+Do not make every element scale.
+
+Do not use glow as the default hover.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+74. POINTER AND CURSOR RESPONSE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Where appropriate, support refined pointer response.
+
+Possible behaviors:
+
+- proximity response;
+
+- subtle object attraction;
+
+- image crop movement;
+
+- depth shift;
+
+- light response;
+
+- label reveal;
+
+- X cursor signature;
+
+- magnetic response used sparingly;
+
+- contextual preview.
+
+Do not globally replace the native cursor without strong justification.
+
+Do not make precise editor interaction harder.
+
+Do not apply magnetic behavior to dense technical controls.
+
+Disable unnecessary pointer systems on touch devices.
+
+Avoid global high-frequency pointer calculations.
+
+Use performance-safe shared infrastructure.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+75. LANDING EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Preserve the approved landing page.
+
+Do not redesign it.
+
+Elevate existing sections through:
+
+- stronger object hierarchy;
+
+- improved tree presence;
+
+- improved orb presence;
+
+- stronger Red X moments;
+
+- refined typography choreography;
+
+- meaningful parallax;
+
+- controlled mask reveals;
+
+- improved product preview transitions;
+
+- better section continuity;
+
+- stronger dark/light transitions where already supported;
+
+- more precise hover;
+
+- improved mobile choreography.
+
+The landing experience should feel cinematic but remain usable.
+
+Do not overload every section.
+
+Some sections should be still.
+
+Some sections should be typographic.
+
+Some sections should be spatial.
+
+Some sections should be technical.
+
+Create rhythm through contrast.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+76. STUDIO HOME EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Studio Home must not become a dashboard of equal cards.
+
+Preserve current composition.
+
+Improve:
+
+- recent project interactions;
+
+- workspace continuation;
+
+- command entry;
+
+- active project focus;
+
+- agent status where real;
+
+- contextual previews;
+
+- spatial identity;
+
+- route continuity;
+
+- empty states;
+
+- loading states;
+
+- mobile entry behavior.
+
+Projects may respond through:
+
+- live preview where available;
+
+- subtle scale;
+
+- content shift;
+
+- metadata reveal;
+
+- shared-layout transition;
+
+- contextual action reveal.
+
+Do not fake live previews.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+77. PROJECTS, RECENT, FAVORITES AND TEMPLATES
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+These surfaces must not become identical card grids.
+
+Differentiate their purpose.
+
+PROJECTS
+
+Focus on ownership, activity, continuation, status, and workspace entry.
+
+RECENT
+
+Focus on chronology and immediate return.
+
+FAVORITES
+
+Focus on curated access.
+
+TEMPLATES
+
+May use richer Marketplace-quality browsing and preview behavior.
+
+Support where appropriate:
+
+- hover preview;
+
+- active selection;
+
+- filtering;
+
+- sorting;
+
+- keyboard navigation;
+
+- shared-layout transitions;
+
+- detail expansion;
+
+- mobile preview;
+
+- touch-safe interaction.
+
+Use representative data honestly when required.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+78. MARKETPLACE AND BROWSING SURFACES
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Apply the highest browsing interaction quality to:
+
+- Components;
+
+- Skills;
+
+- Modules;
+
+- Agents;
+
+- Templates;
+
+- Assets;
+
+- Motion Presets;
+
+- Spatial Objects where exposed;
+
+- Design System resources.
+
+These surfaces may share infrastructure but must not all look identical.
+
+Each family requires a distinct information hierarchy.
+
+COMPONENT
+
+Visual preview first.
+
+SKILL
+
+Capability, source, compatibility, permissions, status.
+
+MODULE
+
+System role, dependencies, routes, commands, compatibility.
+
+AGENT
+
+Role, capabilities, tools, task state, permissions, execution history where real.
+
+TEMPLATE
+
+Visual result, stack, structure, use case.
+
+ASSET
+
+Visual or technical asset information.
+
+MOTION PRESET
+
+Motion itself must be previewable.
+
+SPATIAL OBJECT
+
+Semantic meaning, route usage, performance class, fallback.
+
+Every browse item should support appropriate combinations of:
+
+- idle;
+
+- hover;
+
+- focus;
+
+- selected;
+
+- active;
+
+- loading;
+
+- unavailable;
+
+- incompatible;
+
+- installed;
+
+- enabled;
+
+- disabled;
+
+- error.
+
+Do not fake installation or execution.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+79. DETAIL EXPERIENCE — LIST TO DETAIL CONTINUITY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+When users move from a browse surface into detail:
+
+preserve visual and contextual continuity.
+
+Where appropriate use:
+
+- shared-layout transitions;
+
+- shared preview;
+
+- shared title;
+
+- shared object;
+
+- expanding plane;
+
+- contextual inspector;
+
+- split detail;
+
+- route transition.
+
+Avoid abrupt replacement when continuity adds value.
+
+Do not use elaborate transitions where they delay work.
+
+The user should understand:
+
+WHAT WAS SELECTED.
+
+WHERE THEY ARE.
+
+WHAT CHANGED.
+
+WHAT THEY CAN DO NEXT.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+80. AI CHAT EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AI Chat must feel alive through actual state, not decorative animation.
+
+Possible real states:
+
+IDLE
+
+LISTENING
+
+CONTEXT READY
+
+PLANNING
+
+EXECUTING
+
+WAITING FOR APPROVAL
+
+RUNNING COMMAND
+
+APPLYING CHANGE
+
+VALIDATING
+
+SUCCEEDED
+
+FAILED
+
+CANCELLED
+
+BLOCKED
+
+Each state may have distinct restrained behavior.
+
+Use:
+
+- execution timeline;
+
+- active tool indication;
+
+- subtle Intelligent Orb state;
+
+- progress transitions;
+
+- diff reveal;
+
+- command expansion;
+
+- result continuity.
+
+Do not use generic typing dots as the only AI state language.
+
+Do not fake thinking.
+
+Do not expose hidden reasoning.
+
+Do not animate work that is not occurring.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+81. AGENT WORKSPACE EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The Agent Workspace should be one of the strongest WHISPERX experiences.
+
+Represent agents through meaningful state and architecture.
+
+Possible visual systems:
+
+- Agent Core;
+
+- Agent Nodes;
+
+- task graph;
+
+- execution path;
+
+- capability surfaces;
+
+- tool relationships;
+
+- file-change surfaces;
+
+- approval gates;
+
+- validation results.
+
+Motion may communicate:
+
+- task start;
+
+- tool activation;
+
+- dependency;
+
+- handoff;
+
+- waiting;
+
+- approval;
+
+- execution;
+
+- validation;
+
+- completion;
+
+- failure.
+
+Do not create a generic neural-network visualization.
+
+Do not create meaningless particle lines.
+
+Every active connection must have system meaning or be clearly decorative.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+82. EDITOR EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Code remains primary.
+
+Do not bring cinematic Marketplace motion into dense editing.
+
+Improve only where useful:
+
+- file selection;
+
+- tab transition;
+
+- dirty state;
+
+- breadcrumb state;
+
+- contextual AI entry;
+
+- diagnostics;
+
+- command invocation;
+
+- split view;
+
+- preview synchronization;
+
+- inspector opening;
+
+- active-line context.
+
+Animation must be minimal.
+
+Never animate code content in ways that harm readability.
+
+Never delay typing.
+
+Never animate line positions unnecessarily.
+
+Never place decorative spatial objects over code.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+83. VISUAL CANVAS EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Visual Canvas may use richer interaction.
+
+Support where technically implemented:
+
+- component selection;
+
+- hierarchy highlight;
+
+- bounding state;
+
+- inspector continuity;
+
+- responsive modes;
+
+- token updates;
+
+- motion preview;
+
+- JSON view;
+
+- code view;
+
+- live preview.
+
+Selection should feel precise.
+
+Possible feedback:
+
+- thin signal border;
+
+- corner marker;
+
+- X marker used sparingly;
+
+- contextual label;
+
+- inspector connection;
+
+- hierarchy synchronization.
+
+Do not imitate Figma unnecessarily.
+
+Build the WHISPERX interpretation.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+84. JSON STUDIO EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+JSON Studio must visually connect structure to result.
+
+Where implemented, support:
+
+JSON CHANGE
+
+→ VALIDATION
+
+→ TYPE STATE
+
+→ TRANSFORMATION
+
+→ RUNTIME
+
+→ LIVE PREVIEW
+
+Motion may clarify:
+
+- node expansion;
+
+- validation change;
+
+- source-to-preview relationship;
+
+- schema mismatch;
+
+- version change;
+
+- migration;
+
+- selected path.
+
+Do not animate JSON excessively.
+
+Readability remains primary.
+
+JSON Slabs may be used in narrative or overview surfaces.
+
+Do not place decorative 3D slabs over the actual JSON editor.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+85. MOTION LAB EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Motion Lab must be genuinely interactive.
+
+Where technically supported, users should be able to explore:
+
+- duration;
+
+- easing;
+
+- spring;
+
+- delay;
+
+- stagger;
+
+- opacity;
+
+- scale;
+
+- translation;
+
+- blur;
+
+- hover;
+
+- enter;
+
+- exit;
+
+- scroll;
+
+- shared layout.
+
+The preview must respond immediately.
+
+Support:
+
+- replay;
+
+- pause where meaningful;
+
+- reset;
+
+- copy code;
+
+- copy JSON;
+
+- save preset where implemented;
+
+- apply to selection where connected.
+
+Do not fake successful application.
+
+The Motion Lab itself should demonstrate the quality of the WHISPERX motion system.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+86. TERMINAL, OUTPUT, LOGS AND PROBLEMS
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+These are dense technical surfaces.
+
+Do not decorate them heavily.
+
+Use minimal motion for:
+
+- panel opening;
+
+- new output;
+
+- command state;
+
+- error appearance;
+
+- selected problem;
+
+- navigation to source;
+
+- build progress.
+
+Do not animate every log line.
+
+Do not use spatial objects.
+
+Do not use glass.
+
+Do not use unnecessary blur.
+
+Content is primary.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+87. GIT EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Git motion must communicate real state.
+
+Potential transitions:
+
+- file becomes modified;
+
+- file becomes staged;
+
+- file becomes unstaged;
+
+- commit completes;
+
+- branch changes;
+
+- conflict appears;
+
+- conflict resolves;
+
+- diff selection changes.
+
+Use restrained motion.
+
+Do not fake repository state.
+
+Do not show successful commits unless verified.
+
+Do not expose secrets in diffs.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+88. BUILD, VALIDATE, DEPLOY AND SHIP EXPERIENCE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+These surfaces should create meaningful execution continuity.
+
+Possible real sequence:
+
+READY
+
+→ QUEUED
+
+→ RUNNING
+
+→ VALIDATING
+
+→ BUILDING
+
+→ SUCCEEDED
+
+or:
+
+→ WARNING
+
+→ FAILED
+
+→ BLOCKED
+
+Use Build Artifacts and X transitions only where they support comprehension.
+
+Do not celebrate before verified success.
+
+Do not show fake deployment progress.
+
+Do not show fake domains.
+
+Do not classify representative progress as live.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+89. SETTINGS EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Do not make Settings a generic stack of white cards.
+
+Use:
+
+- clear information hierarchy;
+
+- editorial sectioning;
+
+- technical labels;
+
+- compact controls;
+
+- contextual descriptions;
+
+- clear destructive zones;
+
+- meaningful navigation;
+
+- subtle transition between sections.
+
+Motion should remain restrained.
+
+Settings is not a cinematic surface.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+90. SYSTEM STATES EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Design all major states with the same level of quality.
+
+LOADING
+
+Use actual layout-aware skeletons or meaningful progress where available.
+
+EMPTY
+
+Communicate purpose and one clear next action.
+
+ERROR
+
+Explain what failed and what can be done.
+
+OFFLINE
+
+Explain unavailable capability and preserved local state where applicable.
+
+BLOCKED
+
+Explain verified blocker.
+
+UNSUPPORTED
+
+Explain technical limitation.
+
+PARTIAL
+
+Explain what works and what does not.
+
+SIMULATED
+
+Clearly label simulated behavior.
+
+SUCCESS
+
+Use restrained completion feedback.
+
+Do not use generic grey rectangles everywhere.
+
+Do not use irrelevant illustrations.
+
+Do not use fake progress.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+91. DARK MODE MOTION
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Dark-mode motion may use:
+
+- tonal depth;
+
+- restrained internal light;
+
+- signal red;
+
+- controlled atmospheric blur;
+
+- layered surfaces;
+
+- subtle reflections where already appropriate.
+
+Avoid neon overload.
+
+Avoid constant glow.
+
+Avoid cyberpunk styling.
+
+Dark mode must remain calm and premium.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+92. LIGHT MODE MOTION
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Light mode requires independent motion review.
+
+Use:
+
+- surface movement;
+
+- architectural shadow change;
+
+- fine borders;
+
+- typography shift;
+
+- controlled red signals;
+
+- paper-like layering;
+
+- spatial separation.
+
+Do not merely copy dark-mode glow behavior.
+
+Do not use excessive shadows.
+
+Do not turn light mode into a generic SaaS dashboard.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+93. MOBILE MOTION EXPERIENCE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Mobile requires dedicated motion.
+
+Do not scale desktop animation down.
+
+Prefer:
+
+- sheet transitions;
+
+- drawer transitions;
+
+- focused panel switching;
+
+- swipe continuity where useful;
+
+- bottom-dock response;
+
+- preview mode changes;
+
+- full-height AI transitions;
+
+- contextual inspector transitions.
+
+Avoid:
+
+- hover-dependent UX;
+
+- pointer effects;
+
+- heavy parallax;
+
+- desktop-scale spatial scenes;
+
+- excessive blur;
+
+- long route transitions.
+
+Touch feedback must be immediate.
+
+No animation may make the interface feel slow.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+94. REDUCED-MOTION EXPERIENCE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Reduced motion is a designed mode.
+
+When reduced motion is enabled:
+
+- remove parallax;
+
+- remove velocity response;
+
+- remove continuous rotation;
+
+- remove animated blur;
+
+- remove large spatial travel;
+
+- reduce shared-layout travel where necessary;
+
+- preserve state clarity;
+
+- preserve hierarchy;
+
+- preserve focus;
+
+- preserve selection;
+
+- preserve loading meaning;
+
+- preserve completion meaning.
+
+Do not simply disable everything and leave broken transitions.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+95. SPATIAL OBJECT EXPERIENCE UPGRADE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Strengthen approved existing:
+
+- trees;
+
+- branches;
+
+- leaves;
+
+- botanical forms;
+
+- spheres;
+
+- orbs;
+
+- floating forms;
+
+- geometric objects;
+
+- Red X elements.
+
+Do not remove them.
+
+Do not reduce them to minor background decoration.
+
+Improve through:
+
+- scale hierarchy;
+
+- foreground and background layers;
+
+- controlled cropping;
+
+- light;
+
+- depth;
+
+- overlap;
+
+- subtle parallax;
+
+- reveal;
+
+- route continuity;
+
+- semantic state.
+
+Integrate approved Dev × AI families:
+
+- Computational Tree;
+
+- Intelligent Orb;
+
+- Code Monolith;
+
+- Agent Core;
+
+- Agent Nodes;
+
+- JSON Slabs;
+
+- Terminal Planes;
+
+- Build Artifacts;
+
+- X Portals;
+
+- Neural Threads;
+
+- Micro Code Typography.
+
+Do not use every family on every route.
+
+One dominant object is preferred.
+
+Some routes require no spatial object.
+
+Technical density has priority over decoration.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+96. ANIMATION PERFORMANCE BUDGET
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Beautiful motion that harms performance is a failed implementation.
+
+Audit:
+
+- animation count;
+
+- continuous loops;
+
+- pointer listeners;
+
+- scroll listeners;
+
+- requestAnimationFrame loops;
+
+- layout-triggering properties;
+
+- large blur;
+
+- backdrop filter;
+
+- large images;
+
+- canvas;
+
+- WebGL;
+
+- particles;
+
+- hydration;
+
+- bundle size.
+
+Prefer:
+
+- transform;
+
+- opacity;
+
+- intersection activation;
+
+- shared primitives;
+
+- paused off-screen animation;
+
+- lazy loading;
+
+- route isolation;
+
+- responsive asset selection;
+
+- static mobile fallback.
+
+Heavy spatial systems must not load globally without evidence.
+
+Do not introduce WebGL merely for visual spectacle.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+97. INTERACTION ACCESSIBILITY GATE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Every interaction upgrade must preserve or improve accessibility.
+
+Validate:
+
+- keyboard navigation;
+
+- focus visibility;
+
+- focus order;
+
+- screen-reader meaning;
+
+- touch target size;
+
+- hover independence;
+
+- pointer independence;
+
+- reduced motion;
+
+- contrast;
+
+- state announcement;
+
+- error association;
+
+- modal focus trapping;
+
+- overlay escape behavior.
+
+No required action may depend only on hover.
+
+No required information may depend only on animation.
+
+No required state may depend only on color.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+98. VISUAL CONSISTENCY WITHOUT UNIFORMITY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Do not confuse consistency with making every route identical.
+
+WHISPERX consistency comes from:
+
+- typography;
+
+- X identity;
+
+- signal red;
+
+- spacing logic;
+
+- motion philosophy;
+
+- interaction precision;
+
+- surface behavior;
+
+- density hierarchy;
+
+- contextual continuity;
+
+- technical honesty.
+
+Routes may have different compositions.
+
+Landing may be cinematic.
+
+Marketplace may be exploratory.
+
+Editor may be restrained.
+
+Terminal may be dense.
+
+Motion Lab may be experimental.
+
+AI may be stateful.
+
+JSON Studio may be structural.
+
+Build may be execution-oriented.
+
+They must feel different in purpose but unmistakably part of one product.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+99. FULL EXPERIENCE VALIDATION LOOP
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For every significant route:
+
+INSPECT CURRENT RENDER
+
+→ RECORD BASELINE
+
+→ CLASSIFY
+
+→ IMPLEMENT SMALLEST EFFECTIVE UPGRADE
+
+→ RENDER
+
+→ INSPECT HOVER
+
+→ INSPECT FOCUS
+
+→ INSPECT ACTIVE STATE
+
+→ INSPECT TRANSITION
+
+→ INSPECT DARK MODE
+
+→ INSPECT LIGHT MODE
+
+→ INSPECT DESKTOP
+
+→ INSPECT TABLET
+
+→ INSPECT MOBILE
+
+→ INSPECT REDUCED MOTION
+
+→ CHECK PERFORMANCE
+
+→ CHECK ACCESSIBILITY
+
+→ REPAIR REGRESSION
+
+→ VALIDATE AGAIN
+
+Do not claim visual validation without rendered inspection.
+
+Do not claim mobile validation without inspecting mobile output.
+
+Do not claim motion quality from source-code inspection alone.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+100. MARKETPLACE-QUALITY ACCEPTANCE GATE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+A major frontend surface passes only when:
+
+- it preserves approved WHISPERX identity;
+
+- it has clear visual hierarchy;
+
+- it has intentional interaction behavior;
+
+- hover is purposeful where applicable;
+
+- focus is visible;
+
+- active state is clear;
+
+- transition is coherent;
+
+- motion supports meaning;
+
+- no generic SaaS fallback exists;
+
+- no generic IDE fallback exists;
+
+- no placeholder-quality structure remains without honest classification;
+
+- dark mode works;
+
+- light mode works;
+
+- desktop works;
+
+- tablet works;
+
+- mobile is intentional;
+
+- reduced motion works;
+
+- accessibility is preserved;
+
+- performance is acceptable;
+
+- technical state is honest;
+
+- spatial objects do not obstruct work;
+
+- the result feels at least as crafted as the strongest existing Marketplace experience where comparable.
+
+Do not interpret this as requiring identical animation intensity.
+
+Quality equivalence does not mean motion equivalence.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+101. FINAL PRODUCT-WIDE MOTION DIRECTIVE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Upgrade the complete WHISPERX | STUDIO frontend experience.
+
+Do not redesign the approved product.
+
+Do not replace strong existing work.
+
+Do not create another generic dashboard.
+
+Do not create another generic IDE.
+
+Do not copy the Marketplace layout everywhere.
+
+Instead:
+
+inspect why the strongest Marketplace interactions feel premium;
+
+extract the actual reusable motion and interaction principles;
+
+adapt them to every route according to purpose;
+
+strengthen every meaningful hover;
+
+strengthen every focus state;
+
+strengthen every selection state;
+
+strengthen route continuity;
+
+strengthen panel continuity;
+
+strengthen object meaning;
+
+strengthen responsive behavior;
+
+strengthen mobile interaction;
+
+strengthen dark mode;
+
+strengthen light mode;
+
+strengthen loading;
+
+strengthen empty states;
+
+strengthen error states;
+
+strengthen AI states;
+
+strengthen agent execution states;
+
+strengthen build states;
+
+strengthen JSON relationships;
+
+strengthen preview relationships;
+
+strengthen spatial identity.
+
+The result must feel alive when the user moves.
+
+Precise when the user works.
+
+Calm when the user reads.
+
+Dense when the user codes.
+
+Spatial when the product tells a story.
+
+Immediate when the user commands.
+
+Honest when functionality is unavailable.
+
+Memorable without becoming noisy.
+
+The strongest Marketplace experience is the interaction-quality benchmark.
+
+The approved current WHISPERX product is the visual source of truth.
+
+Preserve the product.
+
+Upgrade the experience.
+
+Make every major screen feel crafted.
+
+Make every meaningful interaction feel intentional.
+
+Make motion part of the system.
+
+Not decoration.
+
+Not spectacle.
+
+Not noise.
+
+Finish the entire frontend.
+
+Validate the rendered result.
+
+Protect the X.
+
+Protect the trees.
+
+Protect the orbs.
+
+Protect the spatial world.
+
+Protect the code.
+
+Protect usability.
+
+Protect performance.
+
+Protect accessibility.
+
+Same approved product.
+
+Complete experience.
+
+Marketplace-quality interaction.
+
+WHISPERX-quality identity.
+
+Production-polished.
+
+Ship only verified work.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FINAL EXECUTION COMMAND
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Execute this specification against the current WHISPERX | STUDIO repository.
+
+Do not summarize this prompt.
+
+Do not respond with recommendations only.
+
+Do not create a new design concept.
+
+Do not stop at audit.
+
+Do not stop at documentation.
+
+Do not stop at planning.
+
+Do not stop after upgrading the Marketplace.
+
+Do not stop after upgrading the Landing page.
+
+Do not stop after upgrading one polished route.
+
+Inspect the strongest existing Marketplace experience first.
+
+Inspect the current rendered product.
+
+Inspect the complete route architecture.
+
+Inspect all existing motion and interaction primitives.
+
+Preserve approved production-quality work.
+
+Then autonomously upgrade all safely executable in-scope frontend surfaces so that
+
+the entire product reaches the same level of interaction quality, motion precision,
+
+visual craftsmanship, responsiveness, and production polish as the strongest
+
+existing Marketplace experience, while adapting behavior appropriately to each
+
+surface.
+
+Do not make Terminal cinematic.
+
+Do not make Editor decorative.
+
+Do not make Settings a Marketplace.
+
+Do not make every route use cards.
+
+Do not make every route use identical motion.
+
+Use judgment from repository evidence.
+
+Implement.
+
+Render.
+
+Inspect.
+
+Compare.
+
+Repair.
+
+Validate.
+
+Continue.
+
+Stop only when:
+
+A. the verified frontend scope satisfies the acceptance gates; or
+
+B. a verified technical blocker prevents further safe execution.
+
+Finish with the complete evidence required by Section 50.
+
+Report one exact final release status.
+
+Never report PASS without verification.
