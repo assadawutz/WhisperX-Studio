@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform , Variants } from "framer-motion";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
 
 const words = ["automate", "delegate", "execute", "scale"];
 
@@ -82,6 +82,7 @@ function BlurWord({ word, trigger }: { word: string; trigger: number }) {
         return (
           <span
             key={i}
+            className="chromatic-text-hover"
             style={{
               display: "inline-block",
               opacity: letterStates[i]?.opacity ?? 0,
@@ -108,151 +109,95 @@ export function HeroSection() {
   
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % words.length);
-    }, 2500);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-[100dvh] flex flex-col justify-center items-start overflow-hidden bg-black">
-      {/* Background video */}
-      <motion.div style={{ scale: videoScale }} className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-          className="w-full h-full object-cover object-center opacity-80"
-        >
-          <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bg-hero-0BnFGdr81Ifnj3WbBZoNt1KE4D5DMT.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80" />
-      </motion.div>
-
-      {/* Subtle animated grid lines */}
-      <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none opacity-20">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1.5, delay: i * 0.1, ease: "circOut" }}
-            key={`h-${i}`}
-            className="absolute h-px bg-gradient-to-r from-transparent via-white/30 to-transparent origin-left"
-            style={{ top: `${12.5 * (i + 1)}%`, left: 0, right: 0 }}
-          />
-        ))}
-        {[...Array(12)].map((_, i) => (
-          <motion.div
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 1.5, delay: 0.5 + i * 0.1, ease: "circOut" }}
-            key={`v-${i}`}
-            className="absolute w-px bg-gradient-to-b from-transparent via-white/30 to-transparent origin-top"
-            style={{ left: `${8.33 * (i + 1)}%`, top: 0, bottom: 0 }}
-          />
-        ))}
+    <section ref={containerRef} className="relative min-h-[100dvh] flex flex-col justify-center items-start overflow-hidden bg-black text-white px-6 lg:px-12 pt-32 pb-24">
+      {/* Abstract glass shards */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          animate={{ y: [0, -20, 0], rotate: [0, 1, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[10%] left-[20%] w-[30vw] h-[60vh] glass-shard transform rotate-12 -translate-x-1/2"
+        />
+        <motion.div 
+          animate={{ y: [0, 30, 0], rotate: [0, -2, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute top-[30%] right-[10%] w-[40vw] h-[50vh] glass-shard-strong transform -rotate-6 translate-x-1/4"
+        />
       </div>
-      
-      <motion.div style={{ y, opacity }} className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12 py-32 lg:py-40">
-        <div className="lg:max-w-[65%]">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-8"
-          >
-            <span className="inline-flex items-center gap-3 text-xs sm:text-sm font-mono text-white/60 uppercase tracking-wider relative group cursor-default">
-              <span className="w-8 h-px bg-white/30 group-hover:w-16 transition-all duration-500 bg-gradient-to-r from-transparent to-[#eca8d6]/50" />
-              Autonomous AI agents for distributed computing
-              <motion.span 
-                className="absolute inset-0 rounded bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity blur-md"
-              />
-            </span>
-          </motion.div>
-          
-          <div className="mb-12">
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-              className="text-left text-[clamp(2.75rem,8vw,8rem)] font-display leading-[0.92] tracking-tight text-white"
-            >
-              <span className="block sm:whitespace-nowrap relative inline-block">
-                Distributed compute,
-                <motion.div
-                  className="absolute -inset-2 bg-[#a78bfa]/20 blur-3xl rounded-full z-[-1] opacity-0"
-                  animate={{ opacity: [0, 0.4, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                />
-              </span>
-              <span className="block sm:whitespace-nowrap">
-                agents that{" "}
-                <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">
-                  <BlurWord word={words[wordIndex]} trigger={wordIndex} />
-                </span>
-              </span>
-            </motion.h1>
+
+      <motion.div style={{ y, opacity }} className="relative z-10 w-full flex flex-col items-center justify-center flex-1 min-h-0">
+        <div className="w-full flex justify-end pr-4 md:pr-12 mb-2 md:mb-4">
+          <div className="text-[10px] sm:text-xs font-mono tracking-widest uppercase text-white/50 text-right space-y-1">
+            <p>Agents that</p>
+            <p className="italic font-sans lowercase text-white/40">dominate workflows</p>
           </div>
+        </div>
+        <div className="w-full relative">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center font-display font-black leading-[0.8] tracking-tighter uppercase w-full flex flex-col"
+            style={{ fontSize: "clamp(3rem, 12vw, 14rem)" }}
+          >
+            <span className="block text-white chromatic-text-hover">
+              Distributed
+            </span>
+            <span className="block text-white chromatic-text-hover">
+              Compute
+            </span>
+            <span className="block relative">
+              <span className="absolute inset-0 flex justify-center text-transparent bg-clip-text bg-gradient-to-r from-white/20 to-white/0 pointer-events-none mix-blend-screen chromatic-text blur-[2px]">
+                <BlurWord word={words[wordIndex]} trigger={wordIndex} />
+              </span>
+              <span className="relative z-10 flex justify-center">
+                <BlurWord word={words[wordIndex]} trigger={wordIndex} />
+              </span>
+            </span>
+          </motion.h1>
         </div>
       </motion.div>
       
-      <div className="absolute bottom-12 left-0 right-0 px-6 lg:px-12 z-20">
-        <div className="max-w-[1400px] mx-auto flex flex-wrap sm:flex-nowrap items-start gap-8 sm:gap-10 lg:gap-20">
+      <div className="relative z-20 w-full mt-auto pt-16 flex flex-col md:flex-row justify-between items-end md:items-center gap-8">
+        <div className="flex flex-col gap-1 max-w-sm">
+          <p className="text-xs md:text-sm font-mono text-white/60 leading-relaxed uppercase tracking-widest">
+            Autonomous AI agents for distributed computing.
+          </p>
+          <p className="text-[10px] md:text-xs font-mono text-white/30 italic">
+            Fig. 1 — The scale of operation.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-8 lg:gap-16">
           {[
-            { value: "3500+", label: "autonomous agents active" },
-            { value: "99.7%", label: "distributed uptime" },
-            { value: "<50ms", label: "execution latency" },
+            { value: "3500+", label: "active agents" },
+            { value: "99.7%", label: "uptime" },
+            { value: "<50ms", label: "latency" },
           ].map((stat, i) => (
             <motion.div 
               key={stat.label} 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 + i * 0.15, ease: "easeOut" }}
-              className="flex flex-col gap-2 group cursor-default"
+              transition={{ duration: 0.8, delay: 0.6 + i * 0.1, ease: "easeOut" }}
+              className="flex flex-col gap-1 text-right"
             >
-              <motion.span 
-                className="text-3xl sm:text-4xl lg:text-5xl font-display text-white relative inline-block"
-                whileHover={{ scale: 1.05, textShadow: "0px 0px 20px rgba(255,255,255,0.5)" }}
-              >
+              <span className="text-2xl sm:text-4xl font-display font-bold text-white tracking-tighter uppercase">
                 {stat.value}
-              </motion.span>
-              <span className="text-[10px] sm:text-xs text-white/50 leading-tight font-mono uppercase tracking-wide group-hover:text-white/80 transition-colors">
+              </span>
+              <span className="text-[9px] sm:text-[10px] text-white/40 font-mono uppercase tracking-widest">
                 {stat.label}
               </span>
             </motion.div>
           ))}
         </div>
-      </div>
-      
-      {/* Ambient floating particles */}
-      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={`p-${i}`}
-            className="absolute w-1 h-1 bg-white rounded-full opacity-30"
-            initial={{ 
-              x: `${Math.random() * 100}vw`, 
-              y: `${Math.random() * 100}vh`,
-              scale: Math.random() * 2 
-            }}
-            animate={{ 
-              y: [`${Math.random() * 100}vh`, `${Math.random() * 100}vh`],
-              x: [`${Math.random() * 100}vw`, `${Math.random() * 100}vw`],
-              opacity: [0.1, 0.4, 0.1]
-            }}
-            transition={{ 
-              duration: 10 + Math.random() * 20, 
-              repeat: Infinity, 
-              ease: "linear" 
-            }}
-          />
-        ))}
       </div>
     </section>
   );
